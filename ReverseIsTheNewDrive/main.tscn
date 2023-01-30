@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bayntr8m8ykqt"]
+
+[ext_resource type="PackedScene" uid="uid://dklb8kruga7a0" path="res://car.tscn" id="1_xlypa"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="car" parent="." instance=ExtResource("1_xlypa")]
+
+[editable path="car"]
