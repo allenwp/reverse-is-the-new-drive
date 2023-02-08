@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be5qhx10woi6n"
-path.s3tc="res://.godot/imported/car_1_2_texture.png-f054cc0586fa8ff79869ca795c3db6c0.s3tc.ctex"
+uid="uid://copspsshqbrge"
+path.s3tc="res://.godot/imported/car_car_1_2_texture.png-051e73f702bb741f4d7b4c843d8611e0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://3d-models/car_1_2_texture.png"
-dest_files=["res://.godot/imported/car_1_2_texture.png-f054cc0586fa8ff79869ca795c3db6c0.s3tc.ctex"]
+source_file="res://3d-models/car_car_1_2_texture.png"
+dest_files=["res://.godot/imported/car_car_1_2_texture.png-051e73f702bb741f4d7b4c843d8611e0.s3tc.ctex"]
 
 [params]
 

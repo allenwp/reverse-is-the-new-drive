@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dmnxo3m6c76sa"]
+
+[node name="Tree" type="Node3D"]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(3.01081, 0, 0, 0, 3.01081, 0, 0, 0, 3.01081, 0.00385144, 2.22002, -0.0110227)
+polygon = PackedVector2Array(0, 0, 0, 1, 0.633519, 0.415791, 0.459932, -0.0790011)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+smooth_faces = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.83399, 0, 0, 0, 2.1931, 0, 0, 0, 0.83399, -0.00193091, 2.15417, 0.00552619)

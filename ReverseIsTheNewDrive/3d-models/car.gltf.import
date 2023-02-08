@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4doyohrx5s0x"
+uid="uid://cn3r13b7vl3gh"
 path="res://.godot/imported/car.gltf-a69a69db39fedb749200e6f99bcc46bb.scn"
 
 [deps]
@@ -26,17 +26,18 @@ skins/use_named_skins=true
 animation/import=true
 animation/fps=30
 animation/trimming=false
+animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
 "car_1_M": {
-"use_external/enabled": true,
+"use_external/enabled": false,
 "use_external/path": "res://3d-models/car_1_M.tres"
 },
 "car_1_glass_M": {
-"use_external/enabled": true,
+"use_external/enabled": false,
 "use_external/path": "res://3d-models/car_1_glass_M.tres"
 }
 }
 }
-meshes/handle_gltf_embedded_images=1
+gltf/embedded_image_handling=1

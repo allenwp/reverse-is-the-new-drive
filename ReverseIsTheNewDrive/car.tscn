@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dklb8kruga7a0"]
-
-[ext_resource type="PackedScene" uid="uid://b5752xynoym7l" path="res://3d-models/car.gltf" id="1_vyhns"]
-
-[node name="car" instance=ExtResource("1_vyhns")]
-
-[node name="car_1_glass" parent="." index="3"]
-visible = false
