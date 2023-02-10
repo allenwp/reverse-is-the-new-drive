@@ -19,7 +19,8 @@ func _input(event):
 			steer_target -= event.relative.x / 10;
 			steer_target = clampf(steer_target, -45, 45);
 			self.steering = deg_to_rad(steer_target);
-			SteeringWheel.basis = Basis(Vector3(0, 0, 1), deg_to_rad(-steer_target));
+			var quaternion := Quaternion.from_euler((Vector3(deg_to_rad(10.4), 0, deg_to_rad(-steer_target))));
+			SteeringWheel.basis = Basis(quaternion);
 	if (driving):
 		engine_force = -1000;
 		brake = 0;
