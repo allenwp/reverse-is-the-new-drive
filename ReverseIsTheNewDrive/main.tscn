@@ -322,9 +322,12 @@ environment = SubResource("Environment_4m8vy")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.843189, 0.25659, -0.472434, 0.280975, 0.538868, 0.79415, 0.458351, -0.802361, 0.382273, 0, 0, 0)
 
-[node name="car" type="Node3D" parent="."]
-
 [node name="Vehicle" type="VehicleBody3D" parent="."]
+mass = 1542.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.28, 0.37)
+engine_force = -1024.0
+steering = -0.594459
 script = ExtResource("1_4dsb1")
 
 [node name="Camera3D" type="Camera3D" parent="Vehicle"]
@@ -363,7 +366,17 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_back_left" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.687132, 0.218838, -1.14045)
+engine_force = -1024.0
 use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.215
+wheel_rest_length = 0.1
+wheel_friction_slip = 1.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+suspension_max_force = 6168.0
+damping_compression = 0.5
+damping_relaxation = 0.7
 
 [node name="car_1_wheels_back_left2" type="MeshInstance3D" parent="Vehicle/VehicleWheel_back_left"]
 mesh = SubResource("ArrayMesh_4ynj2")
@@ -371,7 +384,17 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_back_right" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.687132, 0.218838, -1.14045)
+engine_force = -1024.0
 use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.215
+wheel_rest_length = 0.1
+wheel_friction_slip = 1.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+suspension_max_force = 6168.0
+damping_compression = 0.5
+damping_relaxation = 0.7
 
 [node name="car_1_wheels_back_right2" type="MeshInstance3D" parent="Vehicle/VehicleWheel_back_right"]
 mesh = SubResource("ArrayMesh_1u481")
@@ -379,8 +402,19 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_front_right" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.687132, 0.218838, 1.22725)
+engine_force = -1024.0
+steering = -0.594459
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.215
+wheel_rest_length = 0.1
+wheel_friction_slip = 1.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+suspension_max_force = 6168.0
+damping_compression = 0.5
+damping_relaxation = 0.7
 
 [node name="car_1_wheels_front_right2" type="MeshInstance3D" parent="Vehicle/VehicleWheel_front_right"]
 mesh = SubResource("ArrayMesh_bx0nu")
@@ -388,8 +422,19 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_front_left" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.687132, 0.218838, 1.22725)
+engine_force = -1024.0
+steering = -0.594459
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_radius = 0.215
+wheel_rest_length = 0.1
+wheel_friction_slip = 1.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+suspension_max_force = 6168.0
+damping_compression = 0.5
+damping_relaxation = 0.7
 
 [node name="car_1_wheels_front_left2" type="MeshInstance3D" parent="Vehicle/VehicleWheel_front_left"]
 mesh = SubResource("ArrayMesh_wi87a")
@@ -1476,11 +1521,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -221.762, 0, 494.198)
 
 [node name="Tree360" parent="Trees" instance=ExtResource("2_rdclv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -221.762, 0, 494.198)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.40718)
-visible = false
-size = Vector3(1.768, 1.768, 1.768)
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(272.786, 0, 0, 0, 0.05, 0, 0, 0, 616.775, 0, -0.05, -3.407)
