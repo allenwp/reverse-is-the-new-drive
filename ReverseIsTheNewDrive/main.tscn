@@ -14,8 +14,9 @@ sky_material = SubResource("ProceduralSkyMaterial_4kidn")
 background_mode = 2
 sky = SubResource("Sky_aw4x4")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4m3t8"]
-size = Vector3(1.8219, 1.94299, 4.35547)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fvc68"]
+radius = 0.852
+height = 4.281
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdwd3"]
 resource_name = "car_1_M"
@@ -322,13 +323,12 @@ environment = SubResource("Environment_4m8vy")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.843189, 0.25659, -0.472434, 0.280975, 0.538868, 0.79415, 0.458351, -0.802361, 0.382273, 0, 0, 0)
 
-[node name="Vehicle" type="VehicleBody3D" parent="."]
+[node name="Vehicle" type="VehicleBody3D" parent="." node_paths=PackedStringArray("SteeringWheel")]
 mass = 1542.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.28, 0.37)
-engine_force = -1024.0
-steering = -0.594459
 script = ExtResource("1_4dsb1")
+SteeringWheel = NodePath("car_1_Steering_Wheel_2")
 
 [node name="Camera3D" type="Camera3D" parent="Vehicle"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.333327, 1.22439, 0.333636)
@@ -337,8 +337,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.3333
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03593, 0.645807)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974059, 0.123358)
-shape = SubResource("BoxShape3D_4m3t8")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.887434, 0.123358)
+shape = SubResource("CapsuleShape3D_fvc68")
 
 [node name="car_1026" type="MeshInstance3D" parent="Vehicle"]
 mesh = SubResource("ArrayMesh_0nrbo")
@@ -366,7 +366,6 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_back_left" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.687132, 0.218838, -1.14045)
-engine_force = -1024.0
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_radius = 0.215
@@ -384,7 +383,6 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_back_right" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.687132, 0.218838, -1.14045)
-engine_force = -1024.0
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_radius = 0.215
@@ -402,8 +400,6 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_front_right" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.687132, 0.218838, 1.22725)
-engine_force = -1024.0
-steering = -0.594459
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.0
@@ -422,8 +418,6 @@ skeleton = NodePath("")
 
 [node name="VehicleWheel_front_left" type="VehicleWheel3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.687132, 0.218838, 1.22725)
-engine_force = -1024.0
-steering = -0.594459
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.0

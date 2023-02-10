@@ -1,26 +1,28 @@
 extends VehicleBody3D
 
-const STEER_SPEED = 1.5
-const STEER_LIMIT = 0.4
-
-@export var engine_force_value = 40
+@export var SteeringWheel: Node3D;
 
 var steer_target = 0
+var driving = false;
 
-
-func _physics_process(delta):
-
-	steer_target = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")
-	steer_target *= STEER_LIMIT
-
-	if Input.is_action_pressed("reverse"):
-		# Increase engine force at low speeds to make the initial acceleration faster.
-		var speed = linear_velocity.length()
-		if speed < 5 and speed != 0:
-			engine_force = -clamp(engine_force_value * 5 / speed, 0, 100)
+func _input(event):
+	# Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		if event.pressed:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED; # todo: use event.relative to get movement in this mode
+			driving = true;
 		else:
-			engine_force = -engine_force_value
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
+			driving = false;
+	elif event is InputEventMouseMotion:
+		if (driving):
+			steer_target -= event.relative.x / 10;
+			steer_target = clampf(steer_target, -45, 45);
+			self.steering = deg_to_rad(steer_target);
+			SteeringWheel.basis = Basis(Vector3(0, 0, 1), deg_to_rad(-steer_target));
+	if (driving):
+		engine_force = -1000;
+		brake = 0;
 	else:
-		brake = 0.0
-
-	steering = move_toward(steering, steer_target, STEER_SPEED * delta)
+		engine_force = 0;
+		brake = 50;
