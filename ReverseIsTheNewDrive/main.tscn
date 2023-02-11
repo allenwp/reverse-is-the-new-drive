@@ -1,11 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmse6mx6q0p3w"]
+[gd_scene load_steps=35 format=3 uid="uid://bmse6mx6q0p3w"]
 
 [ext_resource type="Script" path="res://Vehicle.gd" id="1_4dsb1"]
 [ext_resource type="Texture2D" uid="uid://copspsshqbrge" path="res://3d-models/car_car_1_2_texture.png" id="1_eyq3n"]
 [ext_resource type="PackedScene" uid="uid://dmnxo3m6c76sa" path="res://Tree.tscn" id="2_rdclv"]
 [ext_resource type="Texture2D" uid="uid://be5qhx10woi6n" path="res://3d-models/car_1_2_texture.png" id="3_oaye8"]
+[ext_resource type="Shader" path="res://mirror.gdshader" id="3_vhs5y"]
+[ext_resource type="Script" path="res://FollowNode3D.gd" id="4_7paa5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4kidn"]
+sky_top_color = Color(0.478431, 0.658824, 0.913725, 1)
+sky_horizon_color = Color(0.760784, 0.815686, 0.901961, 1)
 
 [sub_resource type="Sky" id="Sky_aw4x4"]
 sky_material = SubResource("ProceduralSkyMaterial_4kidn")
@@ -13,6 +17,7 @@ sky_material = SubResource("ProceduralSkyMaterial_4kidn")
 [sub_resource type="Environment" id="Environment_4m8vy"]
 background_mode = 2
 sky = SubResource("Sky_aw4x4")
+ssao_radius = 0.01
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fvc68"]
 radius = 0.852
@@ -114,6 +119,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_evyna")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ve73k"]
+viewport_path = NodePath("Vehicle/car_1_Rear_View_Mirror2/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odkgq"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_vhs5y")
+shader_parameter/tex_frg_2 = SubResource("ViewportTexture_ve73k")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qql7w"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_odkgq")
+size = Vector2(0.224, 0.095)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_806ts"]
 _surfaces = [{
@@ -332,9 +351,8 @@ SteeringWheel = NodePath("car_1_Steering_Wheel_2")
 
 [node name="Camera3D" type="Camera3D" parent="Vehicle"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.333327, 1.22439, 0.333636)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Vehicle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03593, 0.645807)
+doppler_tracking = 2
+current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.887434, 0.123358)
@@ -353,6 +371,24 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00283308, 1.41119, 0.708393)
 mesh = SubResource("ArrayMesh_0rxck")
 skeleton = NodePath("")
+
+[node name="Node3D" type="Node3D" parent="Vehicle/car_1_Rear_View_Mirror2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00020848, -0.04994, -0.032701)
+
+[node name="RearMirrorTexture" type="MeshInstance3D" parent="Vehicle/car_1_Rear_View_Mirror2/Node3D"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qql7w")
+skeleton = NodePath("../..")
+
+[node name="SubViewport" type="SubViewport" parent="Vehicle/car_1_Rear_View_Mirror2"]
+handle_input_locally = false
+size = Vector2i(768, 332)
+
+[node name="RearViewMirror_Camera" type="Camera3D" parent="Vehicle/car_1_Rear_View_Mirror2/SubViewport" node_paths=PackedStringArray("NodeToFollow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00304156, 1.36125, 0.659931)
+fov = 46.8
+script = ExtResource("4_7paa5")
+NodeToFollow = NodePath("../../Node3D")
 
 [node name="car_1_Right_Side_Mirror2" type="MeshInstance3D" parent="Vehicle"]
 transform = Transform3D(0.999555, 0, -0.0298472, 0, 1, 0, 0.0298472, 0, 0.999555, -0.840774, 0.97611, 0.864245)
